@@ -12,19 +12,19 @@ form.addEventListener("submit", (event) => {
     new Promise((resolve, reject) => {
         setTimeout(() => {
             if (state === 'fulfilled') {
-                resolve(`✅ Fulfilled promise in ${delay}ms`);
+                resolve(delay);
             } else {
-                reject(`❌ Rejected promise in ${delay}ms`);
+                reject(delay);
             }
         }, delay);
     }).then(value => {
         iziToast.success({
-            message: value,
+            message: `✅ Fulfilled promise in ${value}ms`
         });
     })
         .catch(error => {
             iziToast.error({
-                message: error
+                message: `❌ Rejected promise in ${error}ms`
             });
         });
 })

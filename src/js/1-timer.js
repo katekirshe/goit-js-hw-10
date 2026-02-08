@@ -40,18 +40,18 @@ function render({ days, hours, minutes, seconds }) {
   values[3].innerHTML = addLeadingZero(seconds);
 }
 
-function isTimerNeedStop({ days, hours, minutes, seconds }) {
-  return days === 0 && hours === 0 && minutes === 0 && seconds === 0
-}
-
 function startTimer() {
   intervalId = setInterval(() => {
     const now = Date.now();
     const ms = userSelectedDate.getTime() - now;
-    const result = convertMs(ms);
-    if (isTimerNeedStop(result)) {
+
+    if (ms<=0) {
       stopTimer();
+       render({ days:0, hours:0, minutes:0, seconds:0})
+      return
     }
+    const result = convertMs(ms);
+    
 
   render(result)
   }, 1000);
